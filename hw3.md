@@ -5,8 +5,8 @@
       <img src="http://raw.githubusercontent.com/cyt228/Yzu-SwiftUI-1101547/main/IMG_0401.jpeg">
     </td>
     <td>
-
-      ```swift
+      
+     ```swift
         import SwiftUI
 
         struct ContentView: View {
@@ -201,8 +201,7 @@
             static let screenHeight = UIScreen.main.bounds.size.height
             static let screenSize = UIScreen.main.bounds.size
         }
-      ```
-
-    </td>
+     ```        
+   </td>
   </tr>
 </table>
