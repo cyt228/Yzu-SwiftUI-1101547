@@ -2,7 +2,7 @@
 <table>
   <tr>
     <td>
-      <img src="https://github.com/cyt228/Yzu-SwiftUI-1101547/blob/6f68071d41d7f22b637d69c7b88b74000a690110/RPReplay_Final1699180664.mov">
+      <img src="https://github.com/cyt228/Yzu-SwiftUI-1101547/blob/6b50d471811c975e02f737ecd7a22c0d194bd896/IMG_0408.gif">
     </td>
     <td>
       
