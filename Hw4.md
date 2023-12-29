@@ -263,68 +263,115 @@ struct ListView: View{
     }
 }
 ```
+
 <h3>CardView</h3>
 
-```swit
+```swift
   import SwiftUI
 
-struct TermAndDescription: Identifiable{
-    var id = UUID()
-    var name:String
-    var image:String
-    var description:String
-    var spot:String
-}
+  struct TermAndDescription: Identifiable{
+      var id = UUID()
+      var name:String
+      var image:String
+      var description:String
+      var spot:String
+  }
+  
+  var myFood = [
+      TermAndDescription(name: "麥當勞" ,image: "Mac" ,description: "美式速食餐廳" ,spot: "B1美食街"),
+      TermAndDescription(name: "MoMOParadise" ,image: "Momo" ,description: "壽喜燒餐廳" ,spot: "9F美食樓層"),
+      TermAndDescription(name: "海底撈" ,image: "Hotpot2" ,description: "火鍋店" ,spot: "8F美食樓層"),
+      TermAndDescription(name: "路易莎" ,image: "Louisa" ,description: "簡餐咖啡廳" ,spot: "1F面外商店"),
+      TermAndDescription(name: "築間" ,image: "Hotpot1" ,description: "火鍋店" ,spot: "9F美食樓層"),
+  ]
+  
+  struct CardView: View{
+      @State var currentCard = Int.random(in: 0...4)
+      var body: some View{
+          VStack{
+              Text("推薦餐廳")
+                  .font(.title)
+                  .offset(y: -50)
+              VStack{
+                  Text(myFood[currentCard].name)
+                      .font(.headline)
+                      //.padding(.all, 5)
+                  Image(myFood[currentCard].image)
+                      .resizable()
+                      .aspectRatio(contentMode: .fill)
+                      .clipped()
+                  Text(myFood[currentCard].description)
+                      .font(.system(.subheadline, design:.rounded))
+                      .fontWeight(.light)
+                  Text(myFood[currentCard].spot)
+                      .font(.system(.subheadline, design:.rounded))
+                      .fontWeight(.light)
+              }
+              .frame(minWidth: 0, idealWidth: 100, maxWidth: 300, minHeight: 0, idealHeight: 100, maxHeight: 300 ,alignment: .center)
+              .background(Color.gray)
+              .onTapGesture{
+                  currentCard = Int.random(in: 0...4)
+                  /*if(currentCard < myFood.count - 1){
+                      currentCard += 1
+                  }
+                  else{
+                      currentCard = 0
+                  }*/
+              }
+              Text("點擊下一張推薦")
+                  .offset(y: 50)
+          }
+      }
+  }
+  ```
 
-var myFood = [
-    TermAndDescription(name: "麥當勞" ,image: "Mac" ,description: "美式速食餐廳" ,spot: "B1美食街"),
-    TermAndDescription(name: "MoMOParadise" ,image: "Momo" ,description: "壽喜燒餐廳" ,spot: "9F美食樓層"),
-    TermAndDescription(name: "海底撈" ,image: "Hotpot2" ,description: "火鍋店" ,spot: "8F美食樓層"),
-    TermAndDescription(name: "路易莎" ,image: "Louisa" ,description: "簡餐咖啡廳" ,spot: "1F面外商店"),
-    TermAndDescription(name: "築間" ,image: "Hotpot1" ,description: "火鍋店" ,spot: "9F美食樓層"),
-]
+  <h3>SettingView</h3>
+  
+   ```swift
+      import SwiftUI
 
-struct CardView: View{
-    @State var currentCard = Int.random(in: 0...4)
-    var body: some View{
-        VStack{
-            Text("推薦餐廳")
-                .font(.title)
-                .offset(y: -50)
-            VStack{
-                Text(myFood[currentCard].name)
-                    .font(.headline)
-                    //.padding(.all, 5)
-                Image(myFood[currentCard].image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .clipped()
-                Text(myFood[currentCard].description)
-                    .font(.system(.subheadline, design:.rounded))
-                    .fontWeight(.light)
-                Text(myFood[currentCard].spot)
-                    .font(.system(.subheadline, design:.rounded))
-                    .fontWeight(.light)
-            }
-            .frame(minWidth: 0, idealWidth: 100, maxWidth: 300, minHeight: 0, idealHeight: 100, maxHeight: 300 ,alignment: .center)
-            .background(Color.gray)
-            .onTapGesture{
-                currentCard = Int.random(in: 0...4)
-                /*if(currentCard < myFood.count - 1){
-                    currentCard += 1
-                }
-                else{
-                    currentCard = 0
-                }*/
-            }
-            Text("點擊下一張推薦")
-                .offset(y: 50)
-        }
-    }
-}
-```
+      struct SettingView: View { 
+          let displayFontType=[".default",".round",".monospaces","serif"]
+          @State var displayFontselected=0
+          @State var IsDeepScheme=false
+          @State var colorArray:Array=[255.0,255.0,255.0]
+          @State var stepperValue=0
+          @State var sliderValue=0.0
+          @AppStorage("UserName") var UserName:String = ""
+          var body: some View{
+              NavigationView{
+                  Form(content: {
+                      Section(content:{
+                          TextField("請輸入你的名字", text: $UserName)
+                      }, header:{
+                          Text("使用者名稱")
+                      })
+                      Section(header:Text("字型設定"),content:{
+                          Picker(selection:$displayFontselected,label:Text("Font choice(\(displayFontselected))"),content:{
+                              ForEach(0..<displayFontType.count,id:\.self,content: {
+                                  Text(self.displayFontType[$0])
+                              })
+                          })
+                      })
+                      Section(header:Text("background style"),content: {
+                          Toggle(isOn:$IsDeepScheme,label:{Text("dark(\(String(IsDeepScheme))")
+                          })
+                      })
+                      Section(header:Text("Stepper")){
+                          Stepper("Stepper(\(stepperValue))",
+                                  onIncrement:{stepperValue+=1},
+                                  onDecrement:{stepperValue-=1})
+                      }
+                      Section(header:Text("Slider(\(sliderValue,specifier:"%.2f"))")){
+                          Slider(value:$sliderValue,in:0...1)
+                      }
+                  })
+                  .navigationBarTitle("Settings")
+              }
+          }
+      }
+  ```
 
-   
    </td>
   </tr>
 </table>
