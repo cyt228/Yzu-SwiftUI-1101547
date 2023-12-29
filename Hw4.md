@@ -1,11 +1,25 @@
-<h1>HW3</h1>
+<h1>HW4</h1>
 <table>
   <tr>
     <td>
       <img src="http://raw.githubusercontent.com/cyt228/Yzu-SwiftUI-1101547/main/IMG_0491.gif">
     </td>
     <td>
-    <h2>ContentView</h2>
+    <h2>MyApp</h2>
+ ```swift
+    import SwiftUI
+
+    @main
+    struct MyApp: App {
+        var body: some Scene {
+            WindowGroup {
+                ContentView()
+            }
+        }
+    }
+ ```
+
+     <h2>ContentView</h2>
     
  ```swift
     import SwiftUI
@@ -51,7 +65,6 @@
     }
  ```
 
-  <h2>
    </td>
   </tr>
 </table>
