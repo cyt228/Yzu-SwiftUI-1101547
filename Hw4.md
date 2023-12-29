@@ -5,7 +5,9 @@
       <img src="http://raw.githubusercontent.com/cyt228/Yzu-SwiftUI-1101547/main/IMG_0491.gif">
     </td>
     <td>
+      <tr>
     <h2>MyApp</h2>
+      
  ```swift
     import SwiftUI
 
@@ -18,7 +20,7 @@
         }
     }
  ```
-
+</tr>
      <h2>ContentView</h2>
     
  ```swift
