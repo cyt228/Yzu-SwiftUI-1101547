@@ -3,8 +3,6 @@
   <tr>
     <td>
       <img src="http://raw.githubusercontent.com/cyt228/Yzu-SwiftUI-1101547/main/IMG_0491.gif">
-    </td>
-    <td>
     <h3>MyApp</h3>
       
  ```swift
