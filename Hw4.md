@@ -21,6 +21,7 @@
     }
  ```
 </tr>
+<tr>
      <h2>ContentView</h2>
     
  ```swift
@@ -66,6 +67,7 @@
         }
     }
  ```
+</tr>
 
    </td>
   </tr>
